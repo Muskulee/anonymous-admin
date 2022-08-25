@@ -22,7 +22,11 @@ export default function PostCard({ post }) {
 
   return (
     <div className="bg-white shadow-sm rounded flex flex-col">
-      <img src={thumbnail || "./logo.png"} alt={title} />
+      <img
+        className="aspect-video"
+        src={thumbnail || "./logo.png"}
+        alt={title}
+      />
 
       <div className="p-2 flex-1 flex flex-col justify-between">
         <h1 className="text-lg font-semibold text-gray-700">{title}</h1>
@@ -37,7 +41,10 @@ export default function PostCard({ post }) {
         </div>
 
         <div className="flex space-x-3">
-          <Link to={`/update-post/${slug}`} className="w-8 h-8 rounded-full bg-teal-400  hover:bg-teal-700 flex justify-center items-center text-white">
+          <Link
+            to={`/update-post/${slug}`}
+            className="w-8 h-8 rounded-full bg-teal-400  hover:bg-teal-700 flex justify-center items-center text-white"
+          >
             <BsPencilSquare />
           </Link>
           <button className="w-8 h-8 rounded-full bg-red-400 hover:bg-red-700 flex justify-center items-center">
