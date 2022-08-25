@@ -80,11 +80,12 @@ export default function Home() {
               );
             })}
       </div>
-      {paginationArray.length > 1 ? (
+      {paginationArray.length > 1 && !searchResult.length ? (
         <div className="py-5 flex justify-center items-center space-x-3">
           {paginationArray.map((_, index) => {
             return (
               <button
+              key={index}
                 onClick={() => {
                   fetchMorePosts(index);
                 }}
