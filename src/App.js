@@ -3,6 +3,7 @@ import { AiOutlineMenuFold, AiOutlineMenuUnfold } from "react-icons/ai";
 import { Route, Routes } from "react-router-dom";
 import CreatePost from "./components/CreatePost";
 import Home from "./components/Home";
+import Navbar from "./components/Navbar";
 import NotFound from "./components/NotFound";
 import UpdatePost from "./components/UpdatePost";
 
@@ -21,7 +22,9 @@ export default function App() {
 
       <div
         className={getNavWidth() + " h-screen bg-red-100 transition-width"}
-      ></div>
+      >
+        <Navbar closed={closedNav} />
+      </div>
 
       {/* content section */}
 
@@ -33,14 +36,14 @@ export default function App() {
             <AiOutlineMenuFold size="25" />
           )}
         </button>
-{/* Create The Routes Here */}
+        {/* Create The Routes Here */}
         <div className="max-w-screen-lg mx-auto">
-           <Routes>
-              <Route path="/" element={<Home />}/>
-              <Route path="/create-post" element={<CreatePost />}/>
-              <Route path="/update-post" element={<UpdatePost />}/>
-              <Route path="*" element={<NotFound />}/>
-           </Routes>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/create-post" element={<CreatePost />} />
+            <Route path="/update-post" element={<UpdatePost />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
         </div>
       </div>
     </div>
