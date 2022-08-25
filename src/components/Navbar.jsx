@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 const NavItem = ({ to, value, closed, Icon }) => {
   const commonClasses =
     "flex items-center space-x-2 w-full p-2 block whitespace-nowrap";
-  const activeClass = commonClasses + " bg-blue-500 text-white";
+  const activeClass = commonClasses + " bg-teal-400 text-black-500";
   const inActiveClass = commonClasses + " text-gray-500";
   return (
     <NavLink

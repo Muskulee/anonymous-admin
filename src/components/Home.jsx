@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getPosts } from "../api/post";
+import PostCard from "./PostCard";
 
 let pageNo = 0;
 
@@ -23,7 +24,7 @@ export default function Home() {
   return (
     <div className="grid grid-cols-3 gap-3">
       {posts.map((post) => {
-        return <PostCard post={post} />;
+        return <PostCard key={post.id} post={post} />;
       })}
     </div>
   );

@@ -35,7 +35,7 @@ export default function App() {
       {/* content section */}
 
       {/* <div className="flex-1 min-h-screen bg-blue-100"> */}
-      <div className="flex-1 min-h-screen">
+      <div className="flex-1 min-h-screen bg-gray-100">
         <div className="sticky top-0">
           <div className="flex item-center p-2 space-x-2">
             <button onClick={toggleNav}>
@@ -55,7 +55,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/create-post" element={<CreatePost />} />
-            <Route path="/update-post" element={<UpdatePost />} />
+            <Route path="/update-post/:slug" element={<UpdatePost />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           
