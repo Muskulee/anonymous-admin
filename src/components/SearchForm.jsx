@@ -5,7 +5,7 @@ export default function SearchForm() {
     <form>
       <input
         placeholder="Search..."
-        className="border border-gray-500 outline-none rounded p-1 focus:ring-1 ring-blue-500 w-56"
+        className="border border-gray-500 outline-none rounded p-1 focus:ring-1 ring-teal-500 w-56"
       />
     </form>
   );

@@ -6,7 +6,7 @@ export const getPosts = async (pageNo, limit) => {
   try {
     // const { data } = await client(`/post/posts?pageNo=${pageNo}&limit=${limit}`);
     const { data } = await client(`${baseUrl}/post/posts?pageNo=${pageNo}&limit=${limit}`);
-    console.log('client', client)
+    // console.log('client', client)
     return data;
   } catch (error) {
     const { response } = error;
@@ -16,3 +16,19 @@ export const getPosts = async (pageNo, limit) => {
     return { error: error.message || error };
   }
 };
+
+
+export const deletePost = async (id) => {
+    try {
+      // const { data } = await client(`/post/posts?pageNo=${pageNo}&limit=${limit}`);
+      const { data } = await client.delete(`${baseUrl}/post/${id}`);
+    //   console.log('client', client)
+      return data;
+    } catch (error) {
+      const { response } = error;
+      if (response?.data) {
+        return response.data;
+      }
+      return { error: error.message || error };
+    }
+  };

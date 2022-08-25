@@ -3,7 +3,7 @@ import dateformat from "dateformat";
 import { BsPencilSquare, BsTrash } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
-export default function PostCard({ post }) {
+export default function PostCard({ post, onDeleteClick }) {
   if (!post) return null;
 
   const {
@@ -47,7 +47,10 @@ export default function PostCard({ post }) {
           >
             <BsPencilSquare />
           </Link>
-          <button className="w-8 h-8 rounded-full bg-red-400 hover:bg-red-700 flex justify-center items-center">
+          <button
+            onClick={onDeleteClick}
+            className="w-8 h-8 rounded-full bg-red-400 hover:bg-red-700 flex justify-center items-center"
+          >
             <BsTrash />
           </button>
         </div>
