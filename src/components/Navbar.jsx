@@ -29,17 +29,12 @@ const NavItem = ({ to, value, closed, Icon }) => {
 export default function Navbar({ closed }) {
   return (
     <nav>
-
-{/* <div className="flex justify-center p-3"> */}
-<div className="flex justify-center">
-    <img className="w-14" src="./logo.png" alt=""  height={70} width={50}/>
-</div>
+      {/* <div className="flex justify-center p-3"> */}
+      <div className="flex justify-center">
+        <img className="w-14" src="./logo.png" alt="" height={70} width={50} />
+      </div>
 
       <ul>
-
-
-
-
         <li>
           <NavItem
             closed={closed}
