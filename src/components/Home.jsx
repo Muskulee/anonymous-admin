@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { deletePost, getPosts } from "../api/post";
+import { useSearch } from "../context/SearchProvider";
 import PostCard from "./PostCard";
 
 let pageNo = 0;
@@ -17,6 +18,8 @@ const getPaginationCount = (length) => {
 };
 
 export default function Home() {
+  const { searchResult } = useSearch();
+
   const [posts, setPosts] = useState([]);
   const [totalPostCount, setTotalPostCount] = useState([]);
 
@@ -57,15 +60,25 @@ export default function Home() {
   return (
     <div>
       <div className="grid grid-cols-3 gap-3 pb-5">
-        {posts.map((post) => {
-          return (
-            <PostCard
-              key={post.id}
-              post={post}
-              onDeleteClick={() => handleDelete(post)}
-            />
-          );
-        })}
+        {searchResult.length
+          ? searchResult.map((post) => {
+              return (
+                <PostCard
+                  key={post.id}
+                  post={post}
+                  onDeleteClick={() => handleDelete(post)}
+                />
+              );
+            })
+          : posts.map((post) => {
+              return (
+                <PostCard
+                  key={post.id}
+                  post={post}
+                  onDeleteClick={() => handleDelete(post)}
+                />
+              );
+            })}
       </div>
       {paginationArray.length > 1 ? (
         <div className="py-5 flex justify-center items-center space-x-3">
