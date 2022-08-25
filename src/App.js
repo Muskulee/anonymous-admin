@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { AiOutlineMenuFold, AiOutlineMenuUnfold } from "react-icons/ai";
+import { Route, Routes } from "react-router-dom";
 
-function App() {
+export default function App() {
+  const [closedNav, setClosedNav] = useState(false);
+
+  const toggleNav = () => {
+    setClosedNav(!closedNav);
+  };
+
+  const getNavWidth = () => (closedNav ? "w-16" : "w-56");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="flex">
+      {/* nav section */}
+
+      <div
+        className={getNavWidth() + " h-screen bg-red-100 transition-width"}
+      ></div>
+
+      {/* content section */}
+
+      <div className="flex-1 min-h-screen bg-blue-100">
+        <button onClick={toggleNav}>
+          {closedNav ? (
+            <AiOutlineMenuUnfold size="25" />
+          ) : (
+            <AiOutlineMenuFold size="25" />
+          )}
+        </button>
+{/* Create The Routes Here */}
+        <div className="max-w-screen-lg mx-auto">
+           <Routes>
+              <Route path="/" element={<Home />}/>
+           </Routes>
+        </div>
+      </div>
     </div>
   );
 }
-
-export default App;
