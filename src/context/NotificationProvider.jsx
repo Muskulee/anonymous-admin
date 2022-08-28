@@ -35,7 +35,7 @@ export default function NotificationProvider({ children }) {
         setBackgroundColor("bg-orange-400");
         break;
       case "success":
-        setBackgroundColor("bg-orange-400");
+        setBackgroundColor("bg-green-400");
         break;
 
       default:
