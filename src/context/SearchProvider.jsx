@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { searchPost } from "../api/post";
 
 // create context
@@ -8,14 +9,14 @@ const SearchContext = createContext();
 export default function SearchProvider({ children }) {
   const [searchResult, setSearchResult] = useState([]);
 
+  const navigate = useNavigate();
+
   const handleSearch = async (query) => {
     const { error, posts } = await searchPost(query);
     if (error) return console.log("error", error);
 
     setSearchResult(posts);
-    console.log('query', query)
-    console.log('ggg', posts)
-
+    navigate("/");
   };
 
   const resetSearch = () => {

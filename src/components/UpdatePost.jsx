@@ -56,6 +56,7 @@ export default function UpdatePost() {
       initialPost={postInfo}
       postBTNTitle={"Update"}
       busy={busy}
+      resetAfterSubmit
     />
   );
 }

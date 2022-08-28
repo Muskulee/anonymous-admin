@@ -19,14 +19,14 @@ export default function SearchForm() {
   };
   const handleKeyDown = (e) => {
     // console.log('e.key', e.key)
-    if ((e.key = "Escape")) {
-    // setQuery("");
-    resetSearch();}
-    
+    if (e.key === "Escape") {
+      // setQuery("");
+      resetSearch();
+    }
   };
 
   return (
-    <form className="relative" onSubmit={handleSubmit} >
+    <form className="relative" onSubmit={handleSubmit}>
       <input
         value={query}
         onKeyDown={handleKeyDown}
