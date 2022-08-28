@@ -59,30 +59,37 @@ export default function CreatePost() {
       setPostInfo({ ...postInfo, thumbnail: value });
       return setSelectedThumbnailURL(URL.createObjectURL(file));
     }
-    if (name === "thumbnail") {
-      const file = target.files[0];
-      if (!file.type?.includes("image")) {
-        return alert("This is not an image file");
-      }
+    // if (name === "thumbnail") {
+    //   const file = target.files[0];
+    //   if (!file.type?.includes("image")) {
+    //     return alert("This is not an image file");
+    //   }
 
-      setPostInfo({ ...postInfo, thumbnail: value });
-      return setSelectedThumbnailURL(URL.createObjectURL(file));
-    }
+    //   setPostInfo({ ...postInfo, thumbnail: value });
+    //   return setSelectedThumbnailURL(URL.createObjectURL(file));
+    // }
 
     if (name === "featured") {
+      localStorage.setItem(
+        "blogPost",
+        JSON.stringify({ ...postInfo, featured: checked })
+      );
       return setPostInfo({ ...postInfo, [name]: checked });
     }
 
     if (name === "tags") {
       const newTags = tags.split(", ");
-      if (newTags.length > 4) updateNotification("warning", "Only First Four Tags Will Be Used!");
+      if (newTags.length > 4)
+        updateNotification("warning", "Only First Four Tags Will Be Used!");
       // console.log("");
     }
-    if (name === "meta" && meta.length > 150) {
+    if (name === "meta" && meta.length >= 150) {
       return setPostInfo({ ...postInfo, meta: value.substring(0, 149) });
     }
+    const newPost = { ...postInfo, [name]: value };
 
-    setPostInfo({ ...postInfo, [name]: value });
+    setPostInfo({ ...newPost });
+    localStorage.setItem("blogPost", JSON.stringify(newPost));
   };
 
   const handleImageUpload = async ({ target }) => {
@@ -176,7 +183,7 @@ export default function CreatePost() {
 
         {/* Title Input */}
 
-        {/* <input
+        <input
           value={title}
           name="title"
           onChange={handleChange}
@@ -184,7 +191,7 @@ export default function CreatePost() {
           className="text-xl outline-none focus:ring-1
            ring-teal-500 rounded p-2 w-full"
           placeholder="Post Title"
-        /> */}
+        />
 
         {/* Image Input */}
 
@@ -238,11 +245,11 @@ export default function CreatePost() {
           )}
         </div>
 
-        <input
+        {/* <input
           type="text"
           className="text-xl outline-none focus:ring-1 ring-teal-500 rounded p-2 w-full"
           placeholder="Post Title"
-        />
+        /> */}
 
         <textarea
           value={content}
