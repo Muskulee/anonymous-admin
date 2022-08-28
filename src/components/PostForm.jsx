@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   ImSpinner11,
   ImEye,
@@ -6,11 +6,11 @@ import {
   ImFilesEmpty,
   ImSpinner3,
 } from "react-icons/im";
-import { uploadImage, uploadImmage } from "../api/post";
+import { uploadImage } from "../api/post";
 import { useNotification } from "../context/NotificationProvider";
 import MarkdownHints from "./MarkdownHints";
 
-const defaultPost = {
+export const defaultPost = {
   title: "",
   thumbnail: "",
   featured: false,
@@ -21,7 +21,13 @@ const defaultPost = {
   commentCount: "",
 };
 
-export default function PostForm() {
+export default function PostForm({
+  initialPost,
+  busy,
+  onSubmit,
+  postBTNTitle,
+  resetAfterSubmit,
+}) {
   const [postInfo, setPostInfo] = useState({ ...defaultPost });
   const [selectedThumbnailURL, setSelectedThumbnailURL] = useState("");
   const [imageURLToCopy, setImageURLToCopy] = useState("");
@@ -29,6 +35,19 @@ export default function PostForm() {
   const [displayMarkDownHint, setDisplayMarkDownHint] = useState(false);
 
   const { updateNotification } = useNotification();
+
+  useEffect(() => {
+    //    console.log('initialPost', initialPost)
+
+    if (initialPost) {
+      setSelectedThumbnailURL(initialPost?.thumbnail);
+    }
+    setPostInfo({ ...initialPost });
+
+    return () => {
+      if (resetAfterSubmit) resetForm();
+    };
+  }, [initialPost, resetAfterSubmit]);
 
   const handleChange = ({ target }) => {
     const { value, name, checked } = target;
@@ -39,7 +58,7 @@ export default function PostForm() {
         return alert("This is not an image file");
       }
 
-      setPostInfo({ ...postInfo, thumbnail: value });
+      setPostInfo({ ...postInfo, thumbnail: file });
       return setSelectedThumbnailURL(URL.createObjectURL(file));
     }
     // if (name === "thumbnail") {
@@ -134,14 +153,20 @@ export default function PostForm() {
       .map((item) => item.trim())
       .splice(0, 4);
 
-    const formData = new FormData(form);
-    const finalPost = { ...postInfo, tags: newTags, slug };
+    const formData = new FormData();
+    const finalPost = { ...postInfo, tags: JSON.stringify(newTags), slug };
     for (let key in finalPost) {
       formData.append(key, finalPost[key]);
     }
 
+    onSubmit(formData);
 
-    
+    if (resetAfterSubmit) resetForm();
+  };
+
+  const resetForm = () => {
+    setPostInfo({ ...defaultPost });
+    localStorage.removeItem("blogPost");
   };
 
   const {
@@ -157,6 +182,9 @@ export default function PostForm() {
   } = postInfo;
 
   return (
+
+
+    
     <form onSubmit={handleSubmit} className="p-2 flex">
       <div className="w-9/12 h-screen space-y-3 flex flex-col">
         {/* Title and Submit */}
@@ -181,7 +209,11 @@ export default function PostForm() {
               <span> View</span>
             </button>
             <button className="h-10 w-36 px-5 hover:ring-1 bg-teal-500 rounded text-white hover:text-teal-500 hover:bg-transparent ring-teal-500 transition">
-              <span> Post</span>
+              {busy ? (
+                <ImSpinner3 className="animate-spin mx-auto text-xl" />
+              ) : (
+                postBTNTitle
+              )}
             </button>
           </div>
         </div>
@@ -308,7 +340,7 @@ export default function PostForm() {
         {/* Text area */}
         <div>
           <label className="text-gray-500" htmlFor="meta">
-            Meta Description {meta.length} / 150
+            Meta Description {meta?.length} / 150
           </label>
           <textarea
             onChange={handleChange}
