@@ -61,7 +61,7 @@ export default function PostForm() {
     }
 
     if (name === "tags") {
-      const newTags = tags.split(", ");
+      const newTags = tags.split(",");
       if (newTags.length > 4)
         updateNotification("warning", "Only First Four Tags Will Be Used!");
       // console.log("");
@@ -114,6 +114,34 @@ export default function PostForm() {
       likeCount,
       postCount,
     } = postInfo;
+
+    if (!title.trim()) return updateNotification("error", "Title is missing!");
+    if (!content.trim())
+      return updateNotification("error", "Content is missing!");
+    if (!tags.trim()) return updateNotification("error", "Tags is missing!");
+    if (!meta.trim())
+      return updateNotification("error", "Meta Description  is missing!");
+
+    const slug = title
+      .toLowerCase()
+      .replace(/[^a-zA-Z ]/g, " ")
+      .split(" ")
+      .filter((item) => item.trim())
+      .join("-");
+
+    const newTags = tags
+      .split(",")
+      .map((item) => item.trim())
+      .splice(0, 4);
+
+    const formData = new FormData(form);
+    const finalPost = { ...postInfo, tags: newTags, slug };
+    for (let key in finalPost) {
+      formData.append(key, finalPost[key]);
+    }
+
+
+    
   };
 
   const {

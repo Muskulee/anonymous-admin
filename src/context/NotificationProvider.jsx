@@ -67,7 +67,7 @@ export default function NotificationProvider({ children }) {
           ref={notificationRef}
           className={
             backgroundColor +
-            " rounded-full p-2 text-white fixed bottom-14 opacity-0 left-1/2 -translate-x-1/2 transition-all duration-150 ease-linear"
+            " rounded p-2 text-white fixed bottom-14 opacity-0 left-1/2 -translate-x-1/2 transition-all duration-150 ease-linear"
           }
         >
           {notification.value}
