@@ -42,9 +42,10 @@ export default function PostForm({
     //    console.log('initialPost', initialPost)
 
     if (initialPost) {
+      setPostInfo({ ...initialPost });
+
       setSelectedThumbnailURL(initialPost?.thumbnail);
     }
-    setPostInfo({ ...initialPost });
 
     return () => {
       if (resetAfterSubmit) resetForm();
@@ -163,7 +164,7 @@ export default function PostForm({
 
     onSubmit(formData);
 
-    if (resetAfterSubmit) resetForm();
+    // if (resetAfterSubmit) resetForm();
   };
 
   const resetForm = () => {
@@ -404,7 +405,7 @@ export default function PostForm({
         content={content}
         thumbnail={selectedThumbnailURL}
         visible={showDeviceView}
-        onClose={()=> setShowDeviceView(false)}
+        onClose={() => setShowDeviceView(false)}
       />
     </>
   );
