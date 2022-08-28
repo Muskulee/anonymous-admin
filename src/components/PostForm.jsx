@@ -113,7 +113,7 @@ export default function PostForm({
     const { error, image } = await uploadImage(formData);
     setImageUploading(false);
 
-    if (error) return console.log(error);
+    if (error) return updateNotification("error", error);
 
     setImageURLToCopy(image);
   };
