@@ -13,20 +13,21 @@ export default function CreatePost() {
   const [postInfo, setPostInfo] = useState(null);
 
   const handleSubmit = async (data) => {
-    console.log("This data", data);
+    // console.log("This data", data);
     setBusy(true);
     const { error, post } = await createPost(data);
 
     setBusy(false);
     // console.log("This data", data.get('slug'));
 
-    console.log("Tierror", error.message);
+    // console.log("Tierror", error.message);
     if (error)
       return updateNotification("error", `Problem Submitting Form : ${error} `);
 
+    setResetAfterSubmit(true);
+
     navigate(`/update-post/${post.slug}`);
 
-    // setResetAfterSubmit(true);
     // navigate(`/update-post/${data.get('slug')}`);
   };
 
