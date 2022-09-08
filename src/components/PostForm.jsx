@@ -186,11 +186,11 @@ export default function PostForm({
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="p-2 flex">
-        <div className="w-9/12 h-screen space-y-3 flex flex-col">
+      <form onSubmit={handleSubmit} className="lg:p-2 lg:flex">
+        <div className="lg:w-9/12 lg:h-screen space-y-3 flex flex-col lg:m-0 lg:p-0 m-2 p-2">
           {/* Title and Submit */}
           <div className="flex items-center justify-between">
-            <h1 className="text-xl font-semibold text-gray-700">
+            <h1 className="lg:text-xl font-semibold text-gray-700 text-sm">
               Create New Post
             </h1>
 
@@ -356,7 +356,7 @@ export default function PostForm({
           </div>
         </div>
 
-        <div className="w-1/4 px-2 relative">
+        <div className="lg:w-1/4 px-2 relative">
           <h1
             className="text-xl font-semibold
          text-gray-700 mb-2"
@@ -382,7 +382,7 @@ export default function PostForm({
                 <div
                   className="border border-dashed
              border-gray-500 aspect-video text-gray-500
-             flex flex-col justify-center items-center"
+             flex flex-col justify-center items-center pb-10 lg-pb-0 lg:m-0 m-5"
                 >
                   <span>Select Thumbnail </span>
                   <span className="text-xs">Recommended Size </span>
