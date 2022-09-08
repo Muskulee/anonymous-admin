@@ -1,6 +1,6 @@
 import client from "./client";
 
-const baseUrl = "http://localhost:2424/api/v1";
+const baseUrl = "https://beamblog.herokuapp.com/api/v1";
 
 export const getPosts = async (pageNo, limit) => {
   try {
