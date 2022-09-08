@@ -23,7 +23,7 @@ export default function PostCard({ post, onDeleteClick }) {
   return (
     <div className="bg-white shadow-sm rounded flex flex-col">
       <img
-        className="aspect-video"
+        className="aspect-video sm:as"
         src={thumbnail || "./logo.png"}
         alt={title}
       />

@@ -64,8 +64,9 @@ export default function Home() {
   };
 
   return (
-    <div>
-      <div className="grid grid-cols-3 gap-3 pb-5">
+    <div className="md:flex sm:flex">
+      <div className="grid lg:grid-cols-3 gap-3 pb-5 
+      ">
         {searchResult.length
           ? searchResult.map((post) => {
               return (
