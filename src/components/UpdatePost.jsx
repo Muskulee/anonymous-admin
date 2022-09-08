@@ -32,7 +32,7 @@ export default function UpdatePost() {
 
   const handleSubmit = async (data) => {
     setBusy(true);
-    const {error, post} = await updatePost(postInfo.id, data);
+    const { error, post } = await updatePost(postInfo.id, data);
 
     setBusy(false);
 

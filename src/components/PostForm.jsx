@@ -320,11 +320,26 @@ export default function PostForm({
             onFocus={() => setDisplayMarkDownHint(true)}
             name="content"
             placeholder="## Mark Down"
-            className="resize-none outline-none focus:ring-1 ring-teal-500 
-        rounded p-2 w-full flex-1
-        font-mono tracking-wide text-lg
-        "
+            className=" p-2.5 w-full tracking-wide text-sm
+           bg-gray-50 rounded border border-gray-300
+              focus:ring-teal-500 focus:border-teal-500
+               dark:border-gray-600 dark:placeholder-gray-40
+                dark:focus:ring-teal-500 dark:focus:border-teal-500 
+                
+
+                lg:resize-none lg:outline-none lg:focus:ring-1 ring-teal-500 
+                lg:rounded lg:p-2  lg:flex-1
+                lg:font-mono lg:tracking-wide lg:text-lg
+                
+                
+                "
+
+               
+             
           ></textarea>
+
+          
+
           {/* tags input */}
           <div>
             <label className="text-gray-500" htmlFor="tags">
