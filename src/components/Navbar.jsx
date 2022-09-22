@@ -1,5 +1,7 @@
 import React from "react";
 import { AiFillFileAdd, AiOutlineHome } from "react-icons/ai";
+
+import { RiLogoutBoxFill } from "react-icons/ri";
 import { NavLink } from "react-router-dom";
 
 const NavItem = ({ to, value, closed, Icon }) => {
@@ -26,7 +28,7 @@ const NavItem = ({ to, value, closed, Icon }) => {
   );
 };
 
-export default function Navbar({ closed }) {
+export default function Navbar({ closed, setLogOut }) {
   return (
     <nav>
       {/* <div className="flex justify-center p-3"> */}
@@ -47,11 +49,30 @@ export default function Navbar({ closed }) {
           <NavItem
             closed={closed}
             to="/create-post"
-            value="Create Post"
+            value="Create"
             Icon={<AiFillFileAdd size={24} />}
           />
         </li>
-        <li>{/* <NavLink to="/">Home</NavLink> */}</li>
+
+        <li>
+          {/* <div className="flex"> */}
+          <button
+            onClick={setLogOut}
+            className="ml-2 items-center flex  text-red-700"
+          >
+            <RiLogoutBoxFill size={24} />
+            <span
+              className={
+                closed
+                  ? "w-0 transition-width overflow-hidden"
+                  : "w-full transition-width p-2"
+              }
+            >
+              Logout
+            </span>
+          </button>
+          {/* </div> */}
+        </li>
       </ul>
     </nav>
   );

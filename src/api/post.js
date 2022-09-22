@@ -1,6 +1,7 @@
 import client from "./client";
+import { CONSTANTS } from "./constants";
 
-const baseUrl = "https://beamblog.herokuapp.com/api/v1";
+const baseUrl = CONSTANTS.api_url;
 
 export const getPosts = async (pageNo, limit) => {
   try {
@@ -84,7 +85,6 @@ export const createPost = async (formData) => {
   }
 };
 
-
 export const getPost = async (slug) => {
   try {
     // const { data } = await client(`/post/posts?pageNo=${pageNo}&limit=${limit}`);
@@ -102,20 +102,19 @@ export const getPost = async (slug) => {
   }
 };
 
-
 export const updatePost = async (postId, formData) => {
-    try {
-      // const { data } = await client(`/post/posts?pageNo=${pageNo}&limit=${limit}`);
-      const { data } = await client.put(`${baseUrl}/post/${postId}`, formData);
-      //   console.log('client', client)
-      return data;
-    } catch (error) {
-      const { response } = error;
-      if (response?.data) {
-        return response.data;
-      }
-  
-      console.log("error.message(", error.message());
-      return { error: error.message || error };
+  try {
+    // const { data } = await client(`/post/posts?pageNo=${pageNo}&limit=${limit}`);
+    const { data } = await client.put(`${baseUrl}/post/${postId}`, formData);
+    //   console.log('client', client)
+    return data;
+  } catch (error) {
+    const { response } = error;
+    if (response?.data) {
+      return response.data;
     }
-  };
+
+    console.log("error.message(", error.message());
+    return { error: error.message || error };
+  }
+};

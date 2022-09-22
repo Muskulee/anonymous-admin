@@ -12,7 +12,7 @@ export default function SearchProvider({ children }) {
 
   const navigate = useNavigate();
 
-  const  {updateNotification} = useNotification()
+  const { updateNotification } = useNotification();
 
   const handleSearch = async (query) => {
     const { error, posts } = await searchPost(query);

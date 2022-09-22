@@ -4,17 +4,23 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
+import AuthProvider from "./context/AuthProvider";
+
 import SearchProvider from "./context/SearchProvider";
 import NotificationProvider from "./context/NotificationProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
+    {/* <AuthProvider> */}
     <NotificationProvider>
       <SearchProvider>
-        <App />
+        <AuthProvider>
+          <App />
+        </AuthProvider>
       </SearchProvider>
     </NotificationProvider>
+    {/* </AuthProvider> */}
   </BrowserRouter>
 );
 
