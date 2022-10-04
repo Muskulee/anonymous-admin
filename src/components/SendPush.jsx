@@ -13,7 +13,7 @@ function SendPush() {
 
   const handleSubmit = async (data) => {
     setBusy(true);
-    const { error, push } = await sendPushMessage(data);
+    const { error, post } = await sendPushMessage(data);
 
     setBusy(false);
 

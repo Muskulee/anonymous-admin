@@ -24,7 +24,7 @@ export default function PushForm({
     return () => {
       if (resetAfterSubmit) resetForm();
     };
-  }, [initialPost, resetAfterSubmit]);
+  }, [resetAfterSubmit]);
 
   const handleChange = ({ target }) => {
     const { value, name } = target;
@@ -42,17 +42,14 @@ export default function PushForm({
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!title.trim()) return updateNotification("error", "Title is missing!");
     if (!message.trim())
       return updateNotification("error", "Content is missing!");
 
-    console.log("{title, message}", { title, message });
-
-    onSubmit({ title, message });
-
+    await onSubmit({ title, message });
     if (resetAfterSubmit) resetForm();
   };
 
@@ -80,14 +77,7 @@ export default function PushForm({
                 <ImSpinner11 />
                 <span> Reset</span>
               </button>
-              {/* <button
-                onClick={() => setShowDeviceView(true)}
-                type="button"
-                className="flex items-center space-x-2 px-3 ring-1 ring-teal-500 rounded h-10 text-teal-500 hover:text-white hover:bg-teal-500 transition"
-              >
-                <ImEye />
-                <span> View</span>
-              </button> */}
+
               <button className="h-10 w-36 px-5 hover:ring-1 bg-teal-500 rounded text-white hover:text-teal-500 hover:bg-transparent ring-teal-500 transition">
                 {busy ? (
                   <ImSpinner3 className="animate-spin mx-auto text-xl" />
