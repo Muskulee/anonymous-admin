@@ -11,6 +11,7 @@ import UpdatePost from "./components/UpdatePost";
 import { useAuth } from "./context/AuthProvider";
 import axios from "axios";
 import { CONSTANTS } from "./api/constants";
+import SendPush from "./components/SendPush";
 
 export default function App() {
   const [closedNav, setClosedNav] = useState(false);
@@ -98,6 +99,7 @@ export default function App() {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/create-post" element={<CreatePost />} />
+                <Route path="/send-update" element={<SendPush />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/update-post/:slug" element={<UpdatePost />} />
                 <Route path="*" element={<NotFound />} />

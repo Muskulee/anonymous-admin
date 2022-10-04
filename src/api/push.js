@@ -3,11 +3,11 @@ import { CONSTANTS } from "./constants";
 
 const baseUrl = CONSTANTS.api_url;
 
-export const logIn = async (formData) => {
+export const sendPushMessage = async (formData) => {
   try {
     // const { data } = await client(`/post/posts?pageNo=${pageNo}&limit=${limit}`);
-    const { data } = await client.post(`${baseUrl}/user/login`, formData);
-    // console.log('client', data)
+    const { data } = await client.post(`${baseUrl}/push/sendpush`, formData);
+    console.log('client', data)
     return data;
   } catch (error) {
     const { response } = error;

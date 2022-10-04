@@ -1,5 +1,5 @@
 import React from "react";
-import { AiFillFileAdd, AiOutlineHome } from "react-icons/ai";
+import { AiFillFileAdd, AiFillNotification, AiOutlineHome } from "react-icons/ai";
 
 import { RiLogoutBoxFill } from "react-icons/ri";
 import { NavLink } from "react-router-dom";
@@ -51,6 +51,14 @@ export default function Navbar({ closed, setLogOut }) {
             to="/create-post"
             value="Create"
             Icon={<AiFillFileAdd size={24} />}
+          />
+        </li>
+        <li>
+          <NavItem
+            closed={closed}
+            to="/send-update"
+            value="Broadcast"
+            Icon={<AiFillNotification size={24} />}
           />
         </li>
 
